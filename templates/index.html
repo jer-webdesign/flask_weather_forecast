@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Tells the browser how to read the text and scale for different devices -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Weather Forecast</title>
+
+  <!-- Small icon shown in the browser tab -->
   <link rel="icon" href="{{ url_for('static', filename='images/weather-app.png') }}" type="image/png" />
+
+  <!-- CSS styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+  <!-- Weather and UI icons from Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- PyScript to run Python in the browser -->
   <link rel="stylesheet" href="https://pyscript.net/releases/2025.5.1/core.css" />
   <script defer type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
 </head>
 <body>  
-  <!-- Loader overlay and spinner -->
+  <!-- Loading screen that appears while data is being fetched -->
   <div id="loader-overlay" class="active"></div>
   <div id="loader" class="loader"></div>
 
+  <!-- Main page container -->
   <div class="container">
     <header>
       <h1>Weather Forecast</h1>
-      <button id="dark-mode-button">🌙</button>
+      <button id="dark-mode-button">🌙</button> <!-- Toggles dark mode on/off -->
     </header>
 
+    <!-- User controls: choose data type, country, city, and temp units -->
     <section class="selectors">
       <select id="data-source-select">
         <option value="mock">Mock Data</option>
         <option value="api">Live API</option>
       </select>
+
       <select id="country-select"></select>
       <select id="city-select"></select>
       <button id="temperature-unit-button">°F</button>
@@ -41,7 +53,8 @@
       <div class="forecast-grid" id="forecast-grid"></div>
     </section>
   </div>
-  <!-- <script src="{{ url_for('static', filename='script.js') }}"></script> -->
+
+  <!-- This loads the Python file that controls the app logic -->
   <py-script src="{{ url_for('static', filename='script.py') }}"></py-script>
 </body>
 </html>
