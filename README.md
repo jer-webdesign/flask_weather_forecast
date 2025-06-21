@@ -60,6 +60,46 @@ weather_forecast_widget/  # Repository root
 └── README.md             # Project documentation
 ```
 
+## Software Component Roles
+| Component          | Purpose                                                         |
+| ------------------ | --------------------------------------------------------------- |
+| `app.py`           | Flask app — routes for `/`, `/locations`, `/cities`, `/weather` |
+| `script.py`        | PyScript file — handles DOM, fetches, rendering in the browser  |
+| `style.css`        | Styling — light/dark themes, responsive layout, UI design       |
+| `index.html`       | Main UI — combines HTML, Flask variables, and loads PyScript    |
+| `images/`          | Favicon and background images                                   |
+| `requirements.txt` | List of backend dependencies for deployment (`pip install -r`)  |
+
+---
+
+## Logical Architecture (Visual)
+
+|         User's Browser       |
+|------------------------------|
+| [HTML + CSS + PyScript]      |
+|  - index.html                |
+|  - style.css                 |
+| - script.py (runs in Pyodide)|
+
+               |
+               | fetch()
+               ↓
+
+|          Flask App (app.py)  |
+|------------------------------|
+| /locations,/cities,/weather  |
+|  - requests to external APIs |
+|  - serves mock/live data     |
+
+               |
+               ↓
+
+|    External APIs             |
+|------------------------------|               
+|    Open-Meteo                |
+|    + CountriesNow API)       |
+
+
 ---
 
 ## How to Use
